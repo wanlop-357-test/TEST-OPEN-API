@@ -6,8 +6,8 @@ import { UserEntity } from '../../src/modules/users/entities/user.entity';
  */
 export function createUserDtoFixture(overrides: Partial<CreateUserDto> = {}): CreateUserDto {
   return {
-    email: 'user@example.com',
-    password: 'password123',
+    user_email: 'user@example.com',
+    user_password: 'password123',
     fullName: 'สมชาย ใจดี',
     roles: ['user'],
     ...overrides,

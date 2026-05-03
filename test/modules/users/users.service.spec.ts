@@ -17,7 +17,7 @@ describe('UsersService', () => {
       createUserDtoFixture({ profileImageUrl: 'https://cdn.example.com/users/avatar.png' }),
     );
 
-    expect(user.email).toBe('user@example.com');
+    expect(user.user_email).toBe('user@example.com');
     expect(user.fullName).toBe('สมชาย ใจดี');
     expect(user.profileImageUrl).toBe('https://cdn.example.com/users/avatar.png');
     expect(Object.keys(user)).not.toContain('passwordHash');
@@ -31,7 +31,9 @@ describe('UsersService', () => {
 
   it('throws business error when password has no number', async () => {
     await expect(
-      service.create(createUserDtoFixture({ email: 'new@example.com', password: 'password' })),
+      service.create(
+        createUserDtoFixture({ user_email: 'new@example.com', user_password: 'password' }),
+      ),
     ).rejects.toThrow(UnprocessableEntityException);
   });
 
@@ -45,13 +47,15 @@ describe('UsersService', () => {
   });
 
   it('filters users by role', async () => {
-    await service.create(createUserDtoFixture({ email: 'admin@example.com', roles: ['admin'] }));
-    await service.create(createUserDtoFixture({ email: 'user@example.com', roles: ['user'] }));
+    await service.create(
+      createUserDtoFixture({ user_email: 'admin@example.com', roles: ['admin'] }),
+    );
+    await service.create(createUserDtoFixture({ user_email: 'user@example.com', roles: ['user'] }));
 
     const result = service.findMany({ page: 1, limit: 20, order: 'desc', role: 'admin' });
 
     expect(result.items).toHaveLength(1);
-    expect(result.items[0]?.email).toBe('admin@example.com');
+    expect(result.items[0]?.user_email).toBe('admin@example.com');
   });
 
   it('updates existing user', async () => {

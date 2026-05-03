@@ -12,11 +12,11 @@ export class UserResponseDto {
   id!: string;
 
   @ApiProperty({
-    description: 'Email ของผู้ใช้',
+    description: 'Email ของผู้ใช้ในรูปแบบ field ภายนอก user_email',
     example: 'user@example.com',
     format: 'email',
   })
-  email!: string;
+  user_email!: string;
 
   @ApiProperty({
     description: 'ชื่อ-นามสกุล',

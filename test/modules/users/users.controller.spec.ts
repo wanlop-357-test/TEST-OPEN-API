@@ -8,7 +8,7 @@ describe('UsersController', () => {
   let controller: UsersController;
   const userResponse = {
     id: '5b31b752-89d1-4db2-90e8-3f83c2d06a7b',
-    email: 'user@example.com',
+    user_email: 'user@example.com',
     fullName: 'สมชาย ใจดี',
     profileImageUrl: 'https://cdn.example.com/users/avatar.png',
     roles: ['user'],

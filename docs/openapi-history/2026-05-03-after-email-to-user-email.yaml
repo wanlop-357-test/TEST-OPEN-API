@@ -35,7 +35,7 @@ paths:
         - Health
   /users:
     post:
-      description: Create a new user account with unique user_email and user_password business rules.
+      description: Create a new user account with unique user_email and password business rules.
       operationId: UsersController_create
       parameters: []
       requestBody:
@@ -292,7 +292,7 @@ paths:
       tags:
         - users
     patch:
-      description: Update user profile, user_email, roles, or user_password.
+      description: Update user profile, user_email, roles, or password.
       operationId: UsersController_update
       parameters:
         - name: id
@@ -509,9 +509,9 @@ components:
           description: Email ของผู้ใช้ในรูปแบบ field ภายนอก user_email
           example: user@example.com
           format: email
-        user_password:
+        password:
           type: string
-          description: รหัสผ่านในรูปแบบ field ภายนอก user_password อย่างน้อย 8 ตัวอักษร
+          description: รหัสผ่าน อย่างน้อย 8 ตัวอักษร
           example: password123
           minLength: 8
         fullName:
@@ -534,7 +534,7 @@ components:
             type: string
       required:
         - user_email
-        - user_password
+        - password
         - fullName
     UserResponseDto:
       type: object
@@ -640,9 +640,9 @@ components:
           description: Email ของผู้ใช้ในรูปแบบ field ภายนอก user_email
           example: user@example.com
           format: email
-        user_password:
+        password:
           type: string
-          description: รหัสผ่านในรูปแบบ field ภายนอก user_password อย่างน้อย 8 ตัวอักษร
+          description: รหัสผ่าน อย่างน้อย 8 ตัวอักษร
           example: password123
           minLength: 8
         fullName:

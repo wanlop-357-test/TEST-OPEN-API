@@ -1,5 +1,77 @@
 # API Change Log
 
+## 2026-05-03 - Users API: เปลี่ยน field `email` เป็น `user_email`
+
+Endpoint:
+
+```text
+POST /api/v1/users
+POST /api/v1/users/bulk
+GET /api/v1/users
+GET /api/v1/users/{id}
+PATCH /api/v1/users/{id}
+```
+
+สิ่งที่เปลี่ยน:
+
+```diff
+  CreateUserDto:
+-   email
++   user_email
+    password
+    fullName
+    profileImageUrl
+    roles
+
+  UserResponseDto:
+    id
+-   email
++   user_email
+    fullName
+    profileImageUrl
+    roles
+    createdAt
+    updatedAt
+
+  UserQueryDto:
+-   email
++   user_email
+    role
+-   sort: email
++   sort: user_email
+```
+
+ตัวอย่าง request ใหม่:
+
+```bash
+curl --location --request POST 'http://localhost:3001/api/v1/users' \
+  --header 'Content-Type: application/json' \
+  --data-raw '{
+    "user_email": "user@example.com",
+    "password": "password123",
+    "fullName": "สมชาย ใจดี",
+    "profileImageUrl": "https://cdn.example.com/users/avatar.png",
+    "roles": ["user"]
+  }'
+```
+
+ตัวอย่าง filter ใหม่:
+
+```bash
+curl 'http://localhost:3001/api/v1/users?page=1&limit=10&user_email=user@example.com&sort=user_email'
+```
+
+ผลกระทบ:
+
+- เป็น breaking change สำหรับ client ที่ยังส่ง `email`
+- Next.js, Flutter และ client อื่นต้อง regenerate code จาก OpenAPI ล่าสุด
+- Apidog history/diff จะเห็น schema เปลี่ยนจาก `email` เป็น `user_email`
+
+OpenAPI history:
+
+- Before: `docs/openapi-history/2026-05-03-before-email-to-user-email.yaml`
+- After: `docs/openapi-history/2026-05-03-after-email-to-user-email.yaml`
+
 ## 2026-05-03 - Create User: เพิ่มรูปโปรไฟล์
 
 Endpoint:

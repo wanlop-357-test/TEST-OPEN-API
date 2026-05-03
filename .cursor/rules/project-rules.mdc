@@ -1,0 +1,26 @@
+---
+description: Required project rules for every AI assistant working in this repository
+alwaysApply: true
+---
+
+# Required Project Rules
+
+Cursor และ AI assistant ทุกตัวต้องอ่านและทำตาม:
+
+- `docs/project-rules.md`
+- `AGENTS.md`
+
+กฎที่ห้ามละเมิด:
+
+- ห้ามรันคำสั่ง `git` เองทุกกรณี ยกเว้นผู้ใช้สั่งชัดเจนในข้อความล่าสุด
+- ห้าม commit, push, pull, merge, rebase, checkout, reset, stash หรือ tag เอง
+- ห้าม revert หรือ overwrite changes ที่ผู้ใช้ทำไว้
+- Code คือ source of truth
+- ห้ามแก้ `openapi.yaml` หรือ `openapi.json` ด้วยมือ
+- API change ต้องเริ่มจาก NestJS code แล้วค่อย generate OpenAPI
+- ทุก endpoint ต้องมี Swagger decorators ครบ
+- ทุก DTO ต้องมี validation และ `@ApiProperty` หรือ `@ApiPropertyOptional`
+- ทุก error response ต้องใช้ format มาตรฐานของโปรเจกต์
+- ห้าม hardcode secret, token, API key หรือ DSN
+
+ก่อนแก้ไฟล์ต้องอ่าน `docs/project-rules.md` ก่อนเสมอ

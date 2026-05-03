@@ -51,7 +51,8 @@ export class UsersController {
   @Post()
   @ApiOperation({
     summary: 'Create user',
-    description: 'Create a new user account with unique email and password business rules.',
+    description:
+      'Create a new user account with unique user_email and user_password business rules.',
   })
   @ApiBody({ type: CreateUserDto })
   @ApiCreatedResponse({
@@ -61,7 +62,7 @@ export class UsersController {
   @ApiBadRequestResponse({ description: 'Validation error', type: ErrorResponseDto })
   @ApiUnauthorizedResponse({ description: 'Unauthorized', type: ErrorResponseDto })
   @ApiForbiddenResponse({ description: 'Forbidden', type: ErrorResponseDto })
-  @ApiConflictResponse({ description: 'Email already exists', type: ErrorResponseDto })
+  @ApiConflictResponse({ description: 'User email already exists', type: ErrorResponseDto })
   @ApiUnprocessableEntityResponse({
     description: 'Business rule violation',
     type: ErrorResponseDto,
@@ -86,7 +87,7 @@ export class UsersController {
   @ApiBadRequestResponse({ description: 'Validation error', type: ErrorResponseDto })
   @ApiUnauthorizedResponse({ description: 'Unauthorized', type: ErrorResponseDto })
   @ApiForbiddenResponse({ description: 'Forbidden', type: ErrorResponseDto })
-  @ApiConflictResponse({ description: 'Email already exists', type: ErrorResponseDto })
+  @ApiConflictResponse({ description: 'User email already exists', type: ErrorResponseDto })
   @ApiUnprocessableEntityResponse({
     description: 'Bulk payload violates business rules',
     type: ErrorResponseDto,
@@ -106,12 +107,12 @@ export class UsersController {
   @ApiQuery({ name: 'page', required: false, example: 1 })
   @ApiQuery({ name: 'limit', required: false, example: 20 })
   @ApiQuery({ name: 'search', required: false, example: 'somchai' })
-  @ApiQuery({ name: 'email', required: false, example: 'user@example.com' })
+  @ApiQuery({ name: 'user_email', required: false, example: 'user@example.com' })
   @ApiQuery({ name: 'role', required: false, example: 'admin' })
   @ApiQuery({
     name: 'sort',
     required: false,
-    enum: ['createdAt', 'updatedAt', 'email', 'fullName'],
+    enum: ['createdAt', 'updatedAt', 'user_email', 'fullName'],
   })
   @ApiQuery({ name: 'order', required: false, enum: ['asc', 'desc'] })
   @ApiQuery({ name: 'includeDeleted', required: false, example: false })
@@ -154,7 +155,7 @@ export class UsersController {
   @Patch(':id')
   @ApiOperation({
     summary: 'Update user',
-    description: 'Update user profile, email, roles, or password.',
+    description: 'Update user profile, user_email, roles, or user_password.',
   })
   @ApiParam({
     name: 'id',
@@ -167,7 +168,7 @@ export class UsersController {
   @ApiUnauthorizedResponse({ description: 'Unauthorized', type: ErrorResponseDto })
   @ApiForbiddenResponse({ description: 'Forbidden', type: ErrorResponseDto })
   @ApiNotFoundResponse({ description: 'User not found', type: ErrorResponseDto })
-  @ApiConflictResponse({ description: 'Email already exists', type: ErrorResponseDto })
+  @ApiConflictResponse({ description: 'User email already exists', type: ErrorResponseDto })
   @ApiUnprocessableEntityResponse({
     description: 'Business rule violation',
     type: ErrorResponseDto,

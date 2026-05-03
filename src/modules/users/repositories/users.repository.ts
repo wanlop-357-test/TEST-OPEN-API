@@ -25,7 +25,7 @@ export class UsersRepository {
     const user = new UserEntity();
 
     user.id = randomUUID();
-    user.email = dto.email.toLowerCase();
+    user.email = dto.user_email.toLowerCase();
     user.fullName = dto.fullName;
     user.passwordHash = passwordHash;
     user.profileImageUrl = dto.profileImageUrl ?? null;
@@ -56,7 +56,7 @@ export class UsersRepository {
     const sort = query.sort ?? 'createdAt';
     const order = query.order ?? 'desc';
     const search = query.search?.toLowerCase();
-    const email = query.email?.toLowerCase();
+    const email = query.user_email?.toLowerCase();
     const role = query.role?.toLowerCase();
     const filtered = Array.from(this.users.values()).filter((user) => {
       if (user.deletedAt !== null && query.includeDeleted !== true) {
@@ -125,7 +125,7 @@ export class UsersRepository {
    * ฟังก์ชัน update user entity ที่มีอยู่แล้ว
    */
   update(user: UserEntity, dto: UpdateUserDto, passwordHash?: string): UserEntity {
-    user.email = dto.email?.toLowerCase() ?? user.email;
+    user.email = dto.user_email?.toLowerCase() ?? user.email;
     user.fullName = dto.fullName ?? user.fullName;
     user.profileImageUrl = dto.profileImageUrl ?? user.profileImageUrl;
     user.roles = dto.roles ?? user.roles;
@@ -203,11 +203,12 @@ export class UsersRepository {
   private compareUsers(
     left: UserEntity,
     right: UserEntity,
-    sort: 'createdAt' | 'updatedAt' | 'email' | 'fullName',
+    sort: 'createdAt' | 'updatedAt' | 'user_email' | 'fullName',
     order: 'asc' | 'desc',
   ): number {
-    const leftValue = left[sort];
-    const rightValue = right[sort];
+    const sortField = sort === 'user_email' ? 'email' : sort;
+    const leftValue = left[sortField];
+    const rightValue = right[sortField];
     const direction = order === 'asc' ? 1 : -1;
 
     if (leftValue < rightValue) {
