@@ -1,0 +1,57 @@
+name: Apidog Sync
+
+on:
+  push:
+    branches:
+      - main
+      - develop
+    paths:
+      - openapi.yaml
+      - openapi.json
+      - src/**/*.ts
+      - package.json
+      - package-lock.json
+  workflow_dispatch:
+
+jobs:
+  sync:
+    name: Generate and sync OpenAPI to Apidog
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    env:
+      APIDOG_PROJECT_ID: ${{ secrets.APIDOG_PROJECT_ID }}
+      APIDOG_API_TOKEN: ${{ secrets.APIDOG_API_TOKEN }}
+      APIDOG_OPENAPI_URL: ${{ secrets.APIDOG_OPENAPI_URL }}
+      APIDOG_LOCALE: en-US
+      APIDOG_API_VERSION: 2024-03-28
+      APIDOG_ENDPOINT_FOLDER_ID: 0
+      APIDOG_SCHEMA_FOLDER_ID: 0
+      APIDOG_ENDPOINT_OVERWRITE_BEHAVIOR: OVERWRITE_EXISTING
+      APIDOG_SCHEMA_OVERWRITE_BEHAVIOR: OVERWRITE_EXISTING
+      APIDOG_UPDATE_FOLDER_OF_CHANGED_ENDPOINT: false
+      APIDOG_PREPEND_BASE_PATH: false
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Generate OpenAPI
+        run: npm run openapi:generate
+
+      - name: Validate OpenAPI
+        run: npm run openapi:validate
+
+      - name: Check OpenAPI diff
+        run: npm run openapi:diff
+
+      - name: Sync Apidog
+        run: npm run apidog:sync
