@@ -27,10 +27,10 @@ export class UsersService {
    */
   async create(dto: CreateUserDto): Promise<UserResponseDto> {
     return this.usersRepository.withTransaction(() => {
-      this.assertPasswordBusinessRules(dto.password);
+      this.assertPasswordBusinessRules(dto.user_password);
       this.assertEmailAvailable(dto.user_email);
 
-      const user = this.usersRepository.create(dto, this.hashPassword(dto.password));
+      const user = this.usersRepository.create(dto, this.hashPassword(dto.user_password));
 
       return this.toResponseDto(user);
     });
@@ -49,7 +49,7 @@ export class UsersService {
       }
 
       dto.users.forEach((user) => {
-        this.assertPasswordBusinessRules(user.password);
+        this.assertPasswordBusinessRules(user.user_password);
         this.assertEmailAvailable(user.user_email);
       });
 
@@ -57,7 +57,7 @@ export class UsersService {
         .bulkCreate(
           dto.users.map((user) => ({
             dto: user,
-            passwordHash: this.hashPassword(user.password),
+            passwordHash: this.hashPassword(user.user_password),
           })),
         )
         .map((user) => this.toResponseDto(user));
@@ -102,15 +102,15 @@ export class UsersService {
         this.assertEmailAvailable(nextEmail);
       }
 
-      if (dto.password !== undefined) {
-        this.assertPasswordBusinessRules(dto.password);
+      if (dto.user_password !== undefined) {
+        this.assertPasswordBusinessRules(dto.user_password);
       }
 
       return this.toResponseDto(
         this.usersRepository.update(
           user,
           dto,
-          dto.password !== undefined ? this.hashPassword(dto.password) : undefined,
+          dto.user_password !== undefined ? this.hashPassword(dto.user_password) : undefined,
         ),
       );
     });

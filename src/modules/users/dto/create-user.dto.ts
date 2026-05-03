@@ -23,14 +23,14 @@ export class CreateUserDto {
   user_email!: string;
 
   @ApiProperty({
-    description: 'รหัสผ่าน อย่างน้อย 8 ตัวอักษร',
+    description: 'รหัสผ่านในรูปแบบ field ภายนอก user_password อย่างน้อย 8 ตัวอักษร',
     example: 'password123',
     minLength: 8,
   })
   @IsString()
   @MinLength(8, { message: 'Password must be at least 8 characters' })
   @MaxLength(128, { message: 'Password must not exceed 128 characters' })
-  password!: string;
+  user_password!: string;
 
   @ApiProperty({
     description: 'ชื่อ-นามสกุล',

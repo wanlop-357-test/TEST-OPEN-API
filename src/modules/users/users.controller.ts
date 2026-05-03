@@ -51,7 +51,7 @@ export class UsersController {
   @Post()
   @ApiOperation({
     summary: 'Create user',
-    description: 'Create a new user account with unique user_email and password business rules.',
+    description: 'Create a new user account with unique user_email and user_password business rules.',
   })
   @ApiBody({ type: CreateUserDto })
   @ApiCreatedResponse({
@@ -154,7 +154,7 @@ export class UsersController {
   @Patch(':id')
   @ApiOperation({
     summary: 'Update user',
-    description: 'Update user profile, user_email, roles, or password.',
+    description: 'Update user profile, user_email, roles, or user_password.',
   })
   @ApiParam({
     name: 'id',

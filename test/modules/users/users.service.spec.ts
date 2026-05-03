@@ -31,7 +31,9 @@ describe('UsersService', () => {
 
   it('throws business error when password has no number', async () => {
     await expect(
-      service.create(createUserDtoFixture({ user_email: 'new@example.com', password: 'password' })),
+      service.create(
+        createUserDtoFixture({ user_email: 'new@example.com', user_password: 'password' }),
+      ),
     ).rejects.toThrow(UnprocessableEntityException);
   });
 
