@@ -2,6 +2,10 @@
 
 เอกสารนี้กำหนด workflow การเปลี่ยน API โดยยึดหลักว่า code เป็น source of truth และ Apidog เป็นพื้นที่แสดงผล/ทำงานร่วมกันของทีม
 
+กฎหลักของโปรเจกต์และข้อจำกัดสำหรับ AI assistant อยู่ที่ `docs/project-rules.md`
+
+AI assistant ทุกตัวต้องอ่าน `AGENTS.md` และ `docs/project-rules.md` ก่อนเริ่มแก้ code หรือรันคำสั่งใด ๆ
+
 ## API Change Workflow
 
 1. สร้าง branch จาก `dev`
