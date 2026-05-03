@@ -16,8 +16,8 @@
 - [ ] `npm run openapi:validate`
 - [ ] `npm run openapi:diff`
 
-## ApiDoc.io
+## Apidog
 
 - [ ] Manual sync not required
-- [ ] `openapi.yaml` ready to upload to apidoc.io
+- [ ] `openapi.yaml` ready to sync/import to Apidog project `1276414`
 - [ ] Tester notified

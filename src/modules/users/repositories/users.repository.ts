@@ -28,6 +28,7 @@ export class UsersRepository {
     user.email = dto.email.toLowerCase();
     user.fullName = dto.fullName;
     user.passwordHash = passwordHash;
+    user.profileImageUrl = dto.profileImageUrl ?? null;
     user.roles = dto.roles ?? ['user'];
     user.createdAt = now;
     user.updatedAt = now;
@@ -126,6 +127,7 @@ export class UsersRepository {
   update(user: UserEntity, dto: UpdateUserDto, passwordHash?: string): UserEntity {
     user.email = dto.email?.toLowerCase() ?? user.email;
     user.fullName = dto.fullName ?? user.fullName;
+    user.profileImageUrl = dto.profileImageUrl ?? user.profileImageUrl;
     user.roles = dto.roles ?? user.roles;
     user.passwordHash = passwordHash ?? user.passwordHash;
     user.updatedAt = new Date();
@@ -182,6 +184,7 @@ export class UsersRepository {
     entity.id = user.id;
     entity.email = user.email.toLowerCase();
     entity.fullName = user.fullName;
+    entity.profileImageUrl = user.profileImageUrl;
     entity.roles = user.roles;
     entity.passwordHash = createHash('sha256')
       .update(user.password ?? 'password123')

@@ -803,12 +803,6 @@
             "minLength": 2,
             "maxLength": 160
           },
-          "profileImageUrl": {
-            "type": "string",
-            "description": "URL รูปโปรไฟล์ของผู้ใช้",
-            "example": "https://cdn.example.com/users/avatar.png",
-            "format": "uri"
-          },
           "roles": {
             "description": "รายการ role ของผู้ใช้",
             "example": [
@@ -846,12 +840,6 @@
             "description": "ชื่อ-นามสกุล",
             "example": "สมชาย ใจดี"
           },
-          "profileImageUrl": {
-            "type": "string",
-            "description": "URL รูปโปรไฟล์ของผู้ใช้",
-            "example": "https://cdn.example.com/users/avatar.png",
-            "nullable": true
-          },
           "roles": {
             "description": "รายการ role ของผู้ใช้",
             "example": [
@@ -877,7 +865,6 @@
           "id",
           "email",
           "fullName",
-          "profileImageUrl",
           "roles",
           "createdAt",
           "updatedAt"
@@ -976,12 +963,6 @@
             "example": "สมชาย ใจดี",
             "minLength": 2,
             "maxLength": 160
-          },
-          "profileImageUrl": {
-            "type": "string",
-            "description": "URL รูปโปรไฟล์ของผู้ใช้",
-            "example": "https://cdn.example.com/users/avatar.png",
-            "format": "uri"
           },
           "roles": {
             "description": "รายการ role ของผู้ใช้",

@@ -26,6 +26,9 @@ export class UserEntity {
   @Column({ type: 'varchar', length: 255 })
   passwordHash!: string;
 
+  @Column({ type: 'varchar', length: 2048, nullable: true })
+  profileImageUrl!: string | null;
+
   @Column({ type: 'simple-array', default: 'user' })
   roles!: string[];
 

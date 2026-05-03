@@ -5,6 +5,7 @@ import {
   IsEmail,
   IsOptional,
   IsString,
+  IsUrl,
   MaxLength,
   MinLength,
 } from 'class-validator';
@@ -41,6 +42,17 @@ export class CreateUserDto {
   @MinLength(2, { message: 'Full name must be at least 2 characters' })
   @MaxLength(160, { message: 'Full name must not exceed 160 characters' })
   fullName!: string;
+
+  @ApiProperty({
+    description: 'URL รูปโปรไฟล์ของผู้ใช้',
+    example: 'https://cdn.example.com/users/avatar.png',
+    required: false,
+    format: 'uri',
+  })
+  @IsOptional()
+  @IsUrl({ require_protocol: true }, { message: 'Profile image URL must be a valid URL' })
+  @MaxLength(2048, { message: 'Profile image URL must not exceed 2048 characters' })
+  profileImageUrl?: string;
 
   @ApiProperty({
     description: 'รายการ role ของผู้ใช้',

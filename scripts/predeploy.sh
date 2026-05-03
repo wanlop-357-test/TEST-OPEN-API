@@ -6,4 +6,4 @@ npm test
 npm run openapi:generate
 npm run openapi:validate
 npm run openapi:diff
-npm run apidoc:prepare
+npm run apidog:sync

@@ -175,6 +175,7 @@ export class UsersService {
       id: user.id,
       email: user.email,
       fullName: user.fullName,
+      profileImageUrl: user.profileImageUrl,
       roles: user.roles,
       createdAt: user.createdAt.toISOString(),
       updatedAt: user.updatedAt.toISOString(),

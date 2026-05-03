@@ -25,6 +25,14 @@ export class UserResponseDto {
   fullName!: string;
 
   @ApiProperty({
+    description: 'URL รูปโปรไฟล์ของผู้ใช้',
+    example: 'https://cdn.example.com/users/avatar.png',
+    nullable: true,
+    type: String,
+  })
+  profileImageUrl!: string | null;
+
+  @ApiProperty({
     description: 'รายการ role ของผู้ใช้',
     example: ['user'],
     type: [String],

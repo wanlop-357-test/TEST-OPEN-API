@@ -10,6 +10,7 @@ describe('UsersController', () => {
     id: '5b31b752-89d1-4db2-90e8-3f83c2d06a7b',
     email: 'user@example.com',
     fullName: 'สมชาย ใจดี',
+    profileImageUrl: 'https://cdn.example.com/users/avatar.png',
     roles: ['user'],
     createdAt: '2026-05-03T10:30:00.000Z',
     updatedAt: '2026-05-03T10:30:00.000Z',

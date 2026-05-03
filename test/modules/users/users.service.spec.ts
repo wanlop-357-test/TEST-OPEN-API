@@ -13,10 +13,13 @@ describe('UsersService', () => {
   });
 
   it('creates user without exposing password hash', async () => {
-    const user = await service.create(createUserDtoFixture());
+    const user = await service.create(
+      createUserDtoFixture({ profileImageUrl: 'https://cdn.example.com/users/avatar.png' }),
+    );
 
     expect(user.email).toBe('user@example.com');
     expect(user.fullName).toBe('สมชาย ใจดี');
+    expect(user.profileImageUrl).toBe('https://cdn.example.com/users/avatar.png');
     expect(Object.keys(user)).not.toContain('passwordHash');
   });
 

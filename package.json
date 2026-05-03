@@ -1,7 +1,7 @@
 {
   "name": "test-open-api",
   "version": "0.1.0",
-  "description": "NestJS API with OpenAPI documentation prepared for ApiDoc.io publishing.",
+  "description": "NestJS API with OpenAPI documentation prepared for Apidog sync.",
   "private": true,
   "license": "UNLICENSED",
   "scripts": {
@@ -17,13 +17,16 @@
     "test": "jest",
     "test:watch": "jest --watch",
     "test:cov": "jest --coverage",
+    "verify:quick": "npm run lint:check && npm run openapi:generate && npm run openapi:validate",
+    "verify:api": "node scripts/verify-api-contract.js",
     "openapi:json": "ts-node -r tsconfig-paths/register src/scripts/generate-openapi.ts json",
     "openapi:yaml": "ts-node -r tsconfig-paths/register src/scripts/generate-openapi.ts yaml",
     "openapi:generate": "ts-node -r tsconfig-paths/register src/scripts/generate-openapi.ts generate",
     "openapi:validate": "ts-node -r tsconfig-paths/register src/scripts/generate-openapi.ts validate",
     "openapi:diff": "ts-node -r tsconfig-paths/register src/scripts/generate-openapi.ts diff",
     "openapi:watch": "ts-node -r tsconfig-paths/register src/scripts/generate-openapi.ts watch",
-    "apidoc:prepare": "npm run openapi:generate && node scripts/apidoc-prepare.js",
+    "apidog:check": "node scripts/apidog-sync.js check",
+    "apidog:sync": "npm run openapi:generate && node scripts/apidog-sync.js",
     "predeploy": "bash scripts/predeploy.sh"
   },
   "dependencies": {

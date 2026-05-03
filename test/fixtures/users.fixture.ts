@@ -24,6 +24,7 @@ export function userEntityFixture(overrides: Partial<UserEntity> = {}): UserEnti
   user.id = '5b31b752-89d1-4db2-90e8-3f83c2d06a7b';
   user.email = 'user@example.com';
   user.fullName = 'สมชาย ใจดี';
+  user.profileImageUrl = 'https://cdn.example.com/users/avatar.png';
   user.passwordHash = 'hashed-password';
   user.roles = ['user'];
   user.createdAt = now;

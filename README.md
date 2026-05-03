@@ -1,6 +1,6 @@
 # TEST Open API
 
-NestJS API project ที่ใช้ code เป็น source of truth สำหรับสร้าง OpenAPI/Swagger document และ publish เข้า apidoc.io ผ่าน `openapi.yaml`
+NestJS API project ที่ใช้ code เป็น source of truth สำหรับสร้าง OpenAPI/Swagger document และ sync เข้า Apidog ผ่าน `openapi.yaml`
 
 ## Setup Project
 
@@ -32,6 +32,8 @@ npm run lint:check
 npm run format
 npm run test
 npm run test:cov
+npm run verify:quick
+npm run verify:api
 npm run openapi:generate
 ```
 
@@ -80,21 +82,34 @@ Phase 1 ยังไม่ผูก database และ ORM เพราะจะ
 - Database: PostgreSQL / MySQL / MongoDB
 - ORM: TypeORM / Prisma / Mongoose
 
-## ApiDoc.io Publish
+## Apidog Sync
 
 เอกสารทีมอยู่ที่:
 
-- `docs/apidoc-guide.md`
+- `docs/apidog-guide.md`
 - `docs/api-conventions.md`
+- `docs/api-change-log.md`
 - `CONTRIBUTING.md`
 
-Prepare OpenAPI files for apidoc.io:
+Manual sync:
 
 ```bash
-npm run apidoc:prepare
+APIDOG_PROJECT_ID=1276414 \
+APIDOG_API_TOKEN=your_token \
+APIDOG_OPENAPI_URL=https://raw.githubusercontent.com/wanlop-357/TEST-OPEN-API/main/openapi.yaml \
+npm run apidog:check
+
+APIDOG_PROJECT_ID=1276414 \
+APIDOG_API_TOKEN=your_token \
+APIDOG_OPENAPI_URL=https://raw.githubusercontent.com/wanlop-357/TEST-OPEN-API/main/openapi.yaml \
+npm run apidog:sync
 ```
 
-จากนั้น upload `openapi.yaml` ที่ `https://apidoc.io/add/` และเลือก `OpenAPI (Swagger)`
+Manual import เข้า project เดิม:
+
+```text
+https://app.apidog.com/project/1276414
+```
 
 Pre-deploy hook:
 

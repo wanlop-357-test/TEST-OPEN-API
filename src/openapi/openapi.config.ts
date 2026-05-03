@@ -16,9 +16,7 @@ export function createOpenApiDocument(
   const appConfig = appConfigService.app;
   const documentConfig = new DocumentBuilder()
     .setTitle(appConfig.name)
-    .setDescription(
-      'OpenAPI documentation generated from NestJS source code for ApiDoc.io publishing.',
-    )
+    .setDescription('OpenAPI documentation generated from NestJS source code for Apidog sync.')
     .setVersion(appConfig.version)
     .addServer(`http://localhost:${appConfig.port}`, 'Development')
     .addServer('https://staging-api.example.com', 'Staging')

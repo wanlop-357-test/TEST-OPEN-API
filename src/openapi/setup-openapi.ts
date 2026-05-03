@@ -4,7 +4,7 @@ import { AppConfigService } from '../config/app-config.service';
 import { createOpenApiDocument, getSwaggerCustomCss } from './openapi.config';
 
 /**
- * ฟังก์ชันตั้งค่า Swagger UI และ OpenAPI document สำหรับ publish เข้า apidoc.io
+ * ฟังก์ชันตั้งค่า Swagger UI และ OpenAPI document สำหรับ sync เข้า Apidog
  */
 export function setupOpenApi(app: INestApplication, appConfigService: AppConfigService): void {
   const appConfig = appConfigService.app;
