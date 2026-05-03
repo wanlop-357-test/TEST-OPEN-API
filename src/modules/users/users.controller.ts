@@ -51,7 +51,8 @@ export class UsersController {
   @Post()
   @ApiOperation({
     summary: 'Create user',
-    description: 'Create a new user account with unique user_email and user_password business rules.',
+    description:
+      'Create a new user account with unique user_email and user_password business rules.',
   })
   @ApiBody({ type: CreateUserDto })
   @ApiCreatedResponse({
